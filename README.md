@@ -9,3 +9,8 @@ varying read/write permissions.
 ## Usability concerns
 
 The free key updates data at end of day and not every 15 minutes as the premium key does.
+
+
+## Design consideration
+
+I decided to have a main file and a seperate header file. The singular helper file seemed to be the cleanest way to do this as the actual code is very limited and splitting it up into individual files would hurt readability in my opinon rather than improve it. If this was severely expanded, there could be discussions on breaking up the helper file into multiple different sections. 
