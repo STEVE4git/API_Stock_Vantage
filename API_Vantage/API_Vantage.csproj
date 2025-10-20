@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>vatange_API</RootNamespace>
+    <RootNamespace>API_Vantage</RootNamespace>
   </PropertyGroup>
 
 </Project>
