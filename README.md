@@ -1,6 +1,6 @@
 ## **Security concerns**
 
-This program does some very foolish things with regards to API key security (hardcoded in the repo) that should never be done in production
+This program does some very foolish things with regards to API key security (hardcoded in the repo) that should never be done in production. I did not go through with the creation of a docker server due to that being outside the scope of what was requested.
 
 In production, this should be a docker server and stored as a secret. As well as if this was our API, it should have different keys (user/developer/admin) with
 varying read/write permissions.
