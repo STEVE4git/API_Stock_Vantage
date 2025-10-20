@@ -22,7 +22,7 @@ app.MapGet("/api/intraday/{symbol}", async (string symbol, HttpContext http, Can
     {
         return Results.BadRequest(new { error = "Symbol is required." });
     }
-
+    // API key from appsettings.json
     string? apiKey = app.Configuration["AlphaVantage:ApiKey"];
     if (string.IsNullOrWhiteSpace(apiKey))
     {
@@ -40,7 +40,7 @@ app.MapGet("/api/intraday/{symbol}", async (string symbol, HttpContext http, Can
     {
         return Results.Problem(detail: $"Error fetching data from AlphaVantage: {ex.Message}");
     }
-
+    // Parsing json response
     using JsonDocument doc = JsonDocument.Parse(json);
     IResult? validationError = ValidateAlphaVantageResponse(doc);
     if (validationError is not null)
@@ -175,23 +175,14 @@ static (double? high, double? low, long? volume) ExtractMetrics(JsonElement obj)
     return (high, low, volume);
 }
 
-
-/// <summary>
 /// Converts the aggregated dictionary into a list of daily results.
-/// </summary>
-/// <summary>
-/// Converts the aggregated dictionary into a list of daily results.
-/// </summary>
-/// <summary>
-/// Converts the aggregated dictionary into a list of daily results.
-/// </summary>
 static List<object> FormatAggregatedResults(Dictionary<string, (double highSum, double lowSum, long volumeSum, int count)> grouped)
 {
     return grouped
         .Select(kv =>
         {
             string day = kv.Key;
-            var (highSum, lowSum, volumeSum, count) = kv.Value; // ✅ tuple deconstruction
+            var (highSum, lowSum, volumeSum, count) = kv.Value; 
 
             double highAvg = count > 0 ? highSum / count : 0;
             double lowAvg = count > 0 ? lowSum / count : 0;
